@@ -4,13 +4,15 @@ return array(
     # definir e gerenciar controllers
     'controllers' => array(
         'invokables' => array(
-            'HomeController' => 'Usuario\Controller\HomeController'
+            'HomeController'        => 'Usuario\Controller\HomeController',
+            'UsuariosController'    => 'Usuario\Controller\UsuariosController',
         ),
     ),
  
     # definir e gerenciar rotas
     'router' => array(
         'routes' => array(
+            # literal para action index home
             'home' => array(
                 'type'      => 'Literal',
                 'options'   => array(
@@ -21,7 +23,34 @@ return array(
                     ),
                 ),
             ),
-        ),
+            
+            # literal para action sobre home
+            'sobre' => array(
+                'type'      => 'Literal',
+                'options'   => array(
+                    'route'    => '/sobre',
+                    'defaults' => array(
+                        'controller' => 'HomeController',
+                        'action'     => 'sobre',
+                    ),
+                ),
+            ),
+            # segment para controller usuarios
+            'usuarios' => array(
+                'type'      => 'Segment',
+                'options'   => array(
+                    'route'    => '/usuarios[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'UsuariosController',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+        ),      
     ),
  
     # definir e gerenciar servicos
@@ -40,7 +69,8 @@ return array(
         'exception_template'        => 'error/index',
         'template_map'              => array(
             'layout/layout'         => __DIR__ . '/../view/layout/layout.phtml',
-            'contato/home/index'    => __DIR__ . '/../view/contato/home/index.phtml',
+            'usuario/home/index'    => __DIR__ . '/../view/usuario/home/index.phtml',
+         //   'usuario/usuarios/index'=> __DIR__ . '/../view/usuario/usuarios/index.phtml',
             'error/404'             => __DIR__ . '/../view/error/404.phtml',
             'error/index'           => __DIR__ . '/../view/error/index.phtml',
         ),
