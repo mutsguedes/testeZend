@@ -31,30 +31,30 @@
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
-                <th>#</th>
+            <!--    <th>#</th> -->
                 <th>Nome</th>
-                <th>Tel. Principal</th>
-                <th>Tel. Qua.</th>
+                <th>Login</th>
+                <th>E-Mail</th>
                 <th>Data Criação</th>  
                 <th>Ação</th>  
             </tr>
         </thead>
 
         <tbody>
-            <?php for ($i = 1; $i <= 5; $i++): ?>
-                <tr>
-                    <td><?php echo $i; ?></td>
-                    <td>Fortaleza Ceará Brasil</td>
-                    <td>(085)85858585</td>
-                    <td class="text-center">2</td>
-                    <td><?php echo $this->dateFormat(new DateTime(), IntlDateFormatter::SHORT); ?></td>
-                    <td>
-                        <a class="btn btn-xs btn-info" title="Visualizar" href="<?php echo $this->url('usuarios', array("action" => "detalhes", "id" => $i,)); ?>"><span class="glyphicon glyphicon-new-window"></span></a>
-                        <a class="btn btn-xs btn-warning" title="Editar" href="<?php echo $this->url('usuarios', array("action" => "editar", "id" => $i,)); ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-xs btn-danger" title="Deletar" href="<?php echo $this->url('usuarios', array("action" => "deletar", "id" => $i,)); ?>"><span class="glyphicon glyphicon-floppy-remove"></span></a>
-                    </td>
-                </tr>
-            <?php endfor; ?>
+            <?php foreach ($this->usuarios as $usuario) : ?>
+            <tr>
+               <!-- <td><?php //echo $this->escapeHtml($usuario->id); ?></td>-->
+                <td><?php echo $this->escapeHtml($usuario->nm_nom_usu); ?></td>
+                <td><?php echo $this->escapeHtml($usuario->nm_usu_nom); ?></td>
+                <td><?php echo $this->escapeHtml($usuario->nm_eml_usu); ?></td>
+                <td><?php echo $this->escapeHtml($usuario->dt_cad_usu); ?></td>
+                <td>
+                    <a class="btn btn-xs btn-info" title="Visualizar" href="<?php echo $this->url('usuarios', array("action" => "detalhes", "id" => $usuario->id,)); ?>"><span class="glyphicon glyphicon-new-window"></span></a>
+                    <a class="btn btn-xs btn-warning" title="Editar" href="<?php echo $this->url('usuarios', array("action" => "editar", "id" => $usuario->id,)); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-xs btn-danger" title="Deletar" href="<?php echo $this->url('usuarios', array("action" => "deletar", "id" => $usuario->id,)); ?>"><span class="glyphicon glyphicon-floppy-remove"></span></a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 

@@ -9,21 +9,21 @@
             <div class="form-group">
                 <label for="inputNome" class="col-lg-3 col-md-3 control-label">Nome:</label>
                 <div class="col-lg-9 col-md-9">
-                    <input type="text" name="nome" class="form-control" id="inputNome" placeholder="Nome Completo" value="<?php echo $this->form['nome']; ?>">
+                    <input type="text" name="nm_nom_usu" class="form-control" id="inputNome" placeholder="Nome Completo" value="<?php echo $this->escapeHtml($this->form['nm_nom_usu']); ?>">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputTelefonePrincipal" class="col-lg-3 col-md-3 control-label">Tel. Principal:</label>
+                <label for="inputLogin" class="col-lg-3 col-md-3 control-label">Login:</label>
                 <div class="col-lg-9  col-md-9">
-                    <input type="text" name="telefone_principal" class="form-control" id="inputTelefonePrincipal" placeholder="Digite seu telefone principal" value="<?php echo $this->form['telefone_principal']; ?>">
+                    <input type="text" name="nm_usu_nom" class="form-control" id="inputLogin" placeholder="Digite seu login" value="<?php echo $this->escapeHtml($this->form['nm_usu_nom']); ?>">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputTelefoneSecundario" class="col-lg-3 col-md-3 control-label">Tel. Secundário:</label>
+                <label for="inputEmail" class="col-lg-3 col-md-3 control-label">E-Mail:</label>
                 <div class="col-lg-9  col-md-9">
-                    <input type="text" name="telefone_secundario" class="form-control" id="inputTelefoneSecundario" placeholder="Digite seu telefone secundário(opcional)" value="<?php echo $this->form['telefone_secundario']; ?>">
+                    <input type="text" name="nm_eml_usu" class="form-control" id="inputEmail" placeholder="Digite seu e-mail" value="<?php echo $this->escapeHtml($this->form['nm_eml_usu']); ?>">
                 </div>
             </div>
         </div>

@@ -1,8 +1,15 @@
 <?php
 namespace Usuario;
 
-class Module
-{
+// import Model\Usuario
+use Usuario\Model\Usuario,
+    Usuario\Model\UsuarioTable;
+
+// import Zend\Db
+use Zend\Db\ResultSet\ResultSet,
+    Zend\Db\TableGateway\TableGateway;
+
+class Module {
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
@@ -22,8 +29,7 @@ class Module
     /**
      * Register View Helper
      */
-    public function getViewHelperConfig()
-    {
+    public function getViewHelperConfig() {
         return array(
             # registrar View Helper com injecao de dependecia
             'factories' => array(
@@ -36,4 +42,29 @@ class Module
             )
         );
     }
+    
+    /**
+    * Register Services
+    */
+    public function getServiceConfig() {
+        return array(
+            'factories' => array(
+            'UsuarioTableGateway' => function ($sm) {
+                // obter adapter db atraves do service manager
+                //$adapter = $sm->get('AdapterDb');
+                $adapter = $sm->get('Zend\Db\Adapter\Adapter');
+                $adapter->query("SET search_path TO semeccons;", 'execute');
+                // configurar ResultSet com nosso model Usuario
+                $resultSetPrototype = new ResultSet();
+                $resultSetPrototype->setArrayObjectPrototype(new Usuario());
+                // return TableGateway configurado para nosso model Usuario
+                return new TableGateway('usuarios', $adapter, null, $resultSetPrototype);
+            },
+            'ModelUsuario' => function ($sm) {
+                // return instacia Model UsuarioTable
+                return new UsuarioTable($sm->get('UsuarioTableGateway'));
+            }
+        )
+    );
+  }
 }

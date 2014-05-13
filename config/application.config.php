@@ -7,7 +7,9 @@
  */
 return array(
     'modules' => array(
-        'Usuario'
+        'Usuario',
+        'ZendDeveloperTools',
+        'BjyProfiler',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
